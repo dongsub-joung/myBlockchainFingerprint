@@ -1,10 +1,13 @@
 use chrono::prelude::*;
 use hex_literal::hex;
 use sha2::{Sha256, Sha512, Digest};
+use serde::{Serialize, Deserialize};
+use std::fs::File;
+use std::io::prelude::*;
 
-#[derive(Debug)]
+#[derive(Serialize, Deserialize, Debug)]
 struct Block {
-    timestamp: DateTime<Utc>,
+    timestamp: String,
     data: Box<String>, // JoungDongSub fixed
     previous_hash: String,
     hash: String,
@@ -12,7 +15,8 @@ struct Block {
 }
 impl Block {
     fn new(data: Box<String>, previous_hash: String) -> Block {
-        let timestamp :DateTime<Utc> = Utc::now(); 
+        let timestamp= Self::get_current_timestamp();
+
         let nonce = 0; // Initial nonce
         
         let mut hasher= Sha512::new();
@@ -24,25 +28,40 @@ impl Block {
 
         Block {timestamp, data, previous_hash, hash, nonce }
     }
+
+    fn get_current_timestamp() -> String{
+        let time:DateTime<Utc>= Utc::now();
+
+        return format!("{}", time);
+    }
 }
 
-fn converte_to_Json(block: Block)){
-
+fn converte_to_Json(block: Block) -> String{
+    let serialized_user = serde_json::to_string(&block).unwrap();
+    
+    return serialized_user;
 }
 
-fn write_txt_in_dis(json: Json){
 
-}
- 
-
-fn main(){
-    let data: Box<String>= Box::new("testing".to_string());
+fn main() -> std::io::Result<()> {
+    // Set Msg
+    let data: Box<String>= Box::new("JoungDongSub just hope die to my own life".to_string());
+    // Set pre hashing for verify
     let previous_hash= "cb2964f8cc21bb61bfcfa0a98aa8dada".to_string();
+
+
     let block= Block::new(data, previous_hash);
 
     let time= format!("./{}-post.txt", block.timestamp);
+
+    let result= converte_to_Json(block);
     
+    let mut file = File::create(time)?;
+    file.write_all(result.as_bytes())?;
+
+    Ok(())
 }
 
 // # ref
-// # https://users.rust-lang.org/t/saving-a-complex-struct-to-disk/97664/3
+// https://users.rust-lang.org/t/saving-a-complex-struct-to-disk/97664/3
+// https://turreta.com/blog/2019/09/22/rust-convert-struct-instances-to-and-from-json/
