@@ -45,9 +45,9 @@ fn converte_to_Json(block: Block) -> String{
 
 fn main() -> std::io::Result<()> {
     // Set Msg
-    let data: Box<String>= Box::new("JoungDongSub just hope die to my own life".to_string());
+    let data: Box<String>= Box::new("환율조작국-한국 원화가치 + 국정원 수사력 축소 = 탈조선".to_string());
     // Set pre hashing for verify
-    let previous_hash= "cb2964f8cc21bb61bfcfa0a98aa8dada".to_string();
+    let previous_hash= "[245, 82, 57, 249, 246, 8, 119, 120, 87, 154, 95, 111, 164, 191, 55, 103, 204, 45, 93, 161, 87, 166, 104, 181, 188, 19, 64, 7, 142, 215, 59, 116, 42, 1, 242, 180, 137, 98, 255, 55, 43, 73, 135, 250, 61, 47, 223, 8, 200, 111, 62, 105, 90, 13, 18, 157, 174, 104, 127, 63, 182, 123, 198, 170]".to_string();
 
 
     let block= Block::new(data, previous_hash);
