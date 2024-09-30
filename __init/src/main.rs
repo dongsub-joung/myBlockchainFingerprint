@@ -45,10 +45,10 @@ fn converte_to_Json(block: Block) -> String{
 
 fn main() -> std::io::Result<()> {
     // Set Msg
-    let data: Box<String>= Box::new("환율조작국-한국 원화가치 + 국정원 수사력 축소 = 탈조선".to_string());
+    let data: Box<String>= Box::new("Philip Kim who Kangwon National University major Sociology met 정원덕 with JoungDongSub at 코란도 스포츠 ".to_string());
     // Set pre hashing for verify
-    let previous_hash= "[245, 82, 57, 249, 246, 8, 119, 120, 87, 154, 95, 111, 164, 191, 55, 103, 204, 45, 93, 161, 87, 166, 104, 181, 188, 19, 64, 7, 142, 215, 59, 116, 42, 1, 242, 180, 137, 98, 255, 55, 43, 73, 135, 250, 61, 47, 223, 8, 200, 111, 62, 105, 90, 13, 18, 157, 174, 104, 127, 63, 182, 123, 198, 170]".to_string();
 
+    let previous_hash= "[220, 27, 59, 217, 173, 174, 218, 94, 24, 8, 149, 193, 131, 23, 254, 143, 12, 254, 54, 159, 247, 72, 57, 238, 202, 29, 47, 241, 21, 109, 128, 177, 107, 142, 165, 151, 18, 38, 173, 72, 15, 43, 253, 211, 219, 159, 48, 226, 217, 215, 24, 51, 106, 72, 151, 224, 208, 192, 184, 60, 101, 140, 70, 255]".to_string();
 
     let block= Block::new(data, previous_hash);
 
