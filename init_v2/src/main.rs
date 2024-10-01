@@ -48,7 +48,7 @@ fn converte_to_Json(block: Block) -> String{
 
 fn get_previous_hash() -> String{
     // Set your file name
-    let FILE_NAME= "something".to_string();
+    let FILE_NAME= "2024-09-30 19:25:53.891972621 UTC-post.txt".to_string();
     
     let PATH= "/home/tatuya/git/myBlockchainFingerprint/init_v2/".to_string();
 
@@ -73,7 +73,7 @@ fn get_previous_hash() -> String{
 
 fn main() -> std::io::Result<()> {
     // Set Msg
-    let text_body= "Philip Kim who Kangwon National University major Sociology met 정원덕 with JoungDongSub at 코란도 스포츠".to_string();
+    let text_body= "JoungDongSub really loves his dev jobs. But South Koreans are saying JoungDongSUb, you are poor man and low. So we can't allow your dev's jobs".to_string();
     let data: Box<String>= Box::new(text_body);
     
     // Set pre hashing for verify
