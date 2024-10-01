@@ -6,6 +6,7 @@ use std::fs::File;
 use std::io::prelude::*;
 
 use std::{env, path};
+use std::fs;
 use std::vec::Splice;
 
 #[derive(Serialize, Deserialize, Debug)]
