@@ -5,7 +5,7 @@ use serde::{Serialize, Deserialize};
 use std::fs::File;
 use std::io::prelude::*;
 
-use std::env;
+use std::{env, path};
 use std::vec::Splice;
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -51,7 +51,12 @@ fn get_previous_hash() -> String{
     
     let PATH= "/home/tatuya/git/myBlockchainFingerprint/init_v2/".to_string();
 
-    let parts = "some string 123 content".split("previous_hash");
+    let FILE_PATH= format!("{}{}", PATH,FILE_NAME);
+
+    let contents = fs::read_to_string(FILE_PATH)
+        .expect("Should have been able to read the file");
+
+    let parts = contents.split("previous_hash");
 
     let mut i= 0;
     let mut moto_hash_string: &str= "";
