@@ -9,6 +9,10 @@ use std::{env, path};
 use std::fs;
 use std::vec::Splice;
 
+// @TODO 
+// First -> output is .txt
+// refector -> connect each nodes
+
 struct Time{
     international_date_line: usize, // UK +0
     current_time: String,
@@ -19,19 +23,23 @@ impl Time{
         let international_date_line= 0_usize;  // for manual seting up
         let current_time= time::Time::get_current_timestamp(); // maybe spawn based time zone
     }
+    pub fn get_current_time(&self) -> String{
+        self.current_time
+    }
 }
 
 #[derive(Serialize, Deserialize, Debug)]
 struct Block {
     timestamp: Time,
     data: Box<String>, // JoungDongSub fixed
-    previous_hash: String,
-    hash: String,
+    previous_hash: Box<String>,  // cuz previous_hash should to alive on run-time
+    hash: Box<Hash>,
     nonce: u64,
 }
+
 impl Block {
     fn new(data: Box<String>, previous_hash: String) -> Block {
-        let timestamp= Time::new();
+        let timestamp= Time::new().get_current_time();
 
         let nonce = 0; // Initial nonce
         
