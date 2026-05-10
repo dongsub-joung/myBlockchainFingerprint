@@ -9,9 +9,21 @@ use std::{env, path};
 use std::fs;
 use std::vec::Splice;
 
+struct Time{
+    international_date_line: usize, // UK +0
+    current_time: String,
+}
+
+impl Time{
+    pub fn new() -> Self{
+        let international_date_line= 0_usize;  // for manual seting up
+        let current_time= time::Time::get_current_timestamp(); // maybe spawn based time zone
+    }
+}
+
 #[derive(Serialize, Deserialize, Debug)]
 struct Block {
-    timestamp: String,
+    timestamp: Time,
     data: Box<String>, // JoungDongSub fixed
     previous_hash: String,
     hash: String,
@@ -19,7 +31,7 @@ struct Block {
 }
 impl Block {
     fn new(data: Box<String>, previous_hash: String) -> Block {
-        let timestamp= Self::get_current_timestamp();
+        let timestamp= Time::new();
 
         let nonce = 0; // Initial nonce
         
