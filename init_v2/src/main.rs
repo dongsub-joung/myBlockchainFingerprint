@@ -58,6 +58,12 @@ impl Block {
 
         return format!("{}", time);
     }
+
+    // Coin is immutable data(can't rewrite) 
+    //fn transaction_head_and_tail(self) -> Self{
+    //    let v_coins: Vec<Block>;
+    //    let mut start_node= v_coins.iter().fillter(|e| if e.nonce == 0_usize return e);
+    // }
 }
 
 fn converte_to_Json(block: Block) -> String{
