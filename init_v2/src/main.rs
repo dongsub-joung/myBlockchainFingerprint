@@ -28,9 +28,16 @@ impl Time{
     }
 }
 
+
+#[derive(Debug)]
+struct Eigenvalue{
+    timestamp: Time,
+    eigenvalue: Box<String>,
+}
+
 #[derive(Serialize, Deserialize, Debug)]
 struct Block {
-    timestamp: Time,
+    eigenvalue: Eigenvalue,
     data: Box<String>, // JoungDongSub fixed
     previous_hash: Box<String>,  // cuz previous_hash should to alive on run-time
     hash: Box<Hash>,
