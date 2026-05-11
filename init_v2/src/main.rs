@@ -37,16 +37,17 @@ struct Eigenvalue{
     eigenvalue: Box<String>,
 }
 
+// Rc<RefCell<<Block>>
 #[derive(Serialize, Deserialize, Debug)]
 struct Block {
     // @TODO But that is role out on Rust lang(I can't). Muable pointer value should be only one in one thread
     // cuz paramaters should to alive on run-time and should to needed borrowing original pointer address on live server
     // each nodes referencing each nodes. So needed multi borrowing parameter I guess
-    eigenvalue: Rc<RefCell<<Eigenvalue>>,
-    live_data: Rc<RefCell<<Date>>,
-    previous_hash: Rc<RefCell<<Hash>>,  
-    hash: Rc<RefCell<<Hash>>,           
-    nonce: Rc<RefCell<<u64>>,
+    eigenvalue: Eigenvalue,
+    live_data: Date,
+    previous_hash: Hash,  
+    hash: Hash,           
+    nonce: u64,
 }
 
 impl Block {
