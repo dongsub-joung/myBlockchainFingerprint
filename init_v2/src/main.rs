@@ -22,7 +22,9 @@ impl Time{
     pub fn new() -> Self{
         let international_date_line= 0_usize;  // for manual seting up
         let current_time= time::Time::get_current_timestamp(); // maybe spawn based time zone
+        self { international_date_line, current_time } 
     }
+    
     pub fn get_current_time(&self) -> String{
         self.current_time
     }
@@ -37,11 +39,11 @@ struct Eigenvalue{
 
 #[derive(Serialize, Deserialize, Debug)]
 struct Block {
-    eigenvalue: Eigenvalue,
-    data: Box<String>, // JoungDongSub fixed
-    previous_hash: Box<String>,  // cuz previous_hash should to alive on run-time
-    hash: Box<Hash>,
-    nonce: u64,
+    eigenvalue: Rc<RefCell<<Eigenvalue>>,
+    live_data: Rc<RefCell<<Date>>,
+    previous_hash: Rc<RefCell<<Hash>>,  // cuz paramaters should to alive on run-time and should to needed borrowing original pointer address on live server
+    hash: Rc<RefCell<<Hash>>,           // each nodes referencing each nodes. So needed multi borrowing parameter I guess
+    nonce: Rc<RefCell<<u64>>,
 }
 
 impl Block {
