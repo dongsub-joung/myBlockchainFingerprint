@@ -68,6 +68,8 @@ impl Block {
     // blockchain online node address update
     // When One blockChain done transaction on live server,
     // updated all nodes( One transaction, all nodes updated)
+
+    // @TODO I should to handle Rollbalck, and Undo for Integration on Coins live server
 }
 
 fn converte_to_Json(block: Block) -> String{
