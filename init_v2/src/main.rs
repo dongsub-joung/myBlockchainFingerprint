@@ -64,6 +64,10 @@ impl Block {
     //    let v_coins: Vec<Block>;
     //    let mut start_node= v_coins.iter().fillter(|e| if e.nonce == 0_usize return e);
     // }
+
+    // blockchain online node address update
+    // When One blockChain done transaction on live server,
+    // updated all nodes( One transaction, all nodes updated)
 }
 
 fn converte_to_Json(block: Block) -> String{
